@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Schedule</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 Daily Schedule</h1>
+            <p class="subtitle">Organize your day with automatic time calculations</p>
+        </header>
+
+        <div class="main-grid">
+            <!-- Left Column: Task Bank & Form -->
+            <div class="left-column">
+                <!-- Task Bank -->
+                <div class="card task-bank-card">
+                    <h2>📝 Task Bank</h2>
+                    <p class="task-bank-subtitle">Things I want to do today</p>
+
+                    <div class="task-bank-input">
+                        <input type="text" id="bankTaskInput" placeholder="Add task to bank..." />
+                        <button onclick="addToBank()" class="btn-add-bank">+</button>
+                    </div>
+
+                    <div id="taskBank" class="task-bank-list">
+                        <div class="empty-state-small">
+                            <p>Add tasks here as reminders</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Task Form -->
+                <div class="card form-card">
+                    <h2>⏰ Schedule Task</h2>
+                    <form id="taskForm">
+                        <div class="form-group">
+                            <label for="title">Task Title</label>
+                            <input type="text" id="title" placeholder="Enter task name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="startTime">Start Time</label>
+                            <input type="time" id="startTime" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="duration">Duration (hours)</label>
+                            <input type="number" id="duration" step="0.25" min="0.25" placeholder="2.5" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>End Time</label>
+                            <div class="end-time-preview" id="endTimePreview">--:--</div>
+                        </div>
+
+                        <button type="submit" class="btn-primary">
+                            <span>➕</span> Add to Schedule
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Schedule List -->
+            <div class="card schedule-card">
+                <h2>Your Schedule</h2>
+                <div id="taskList" class="task-list">
+                    <div class="empty-state">
+                        <div class="empty-icon">📋</div>
+                        <p>No tasks yet. Add your first task!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
